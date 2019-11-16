@@ -1,0 +1,44 @@
+选库：
+use test
+
+建表：
+CREATE TABLE `weibo` (
+  `wid` varchar(20) DEFAULT NULL,
+  `uid` varchar(20) DEFAULT NULL,
+  `cn` int(11) DEFAULT NULL,
+  `rt` int(11) DEFAULT NULL,
+  `tmp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `content` varchar(2000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8；
+
+
+CREATE TABLE `userprofile` (
+  `uid` varchar(20) DEFAULT NULL,
+  `nickname` varchar(100) DEFAULT NULL,
+  `city` varchar(20) DEFAULT NULL,
+  `dist` varchar(20) DEFAULT NULL,
+  `regtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `lastlog` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `gender` char(1) DEFAULT NULL,
+  `dn` varchar(5) DEFAULT NULL,
+  `d1` int(11) DEFAULT NULL,
+  `d2` int(11) DEFAULT NULL,
+  `d3` int(11) DEFAULT NULL,
+  `web` varchar(100) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
+  KEY `index1` (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `relation` (
+  `sid` varchar(20) DEFAULT NULL,
+  `did` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+导入数据：
+LOAD DATA LOCAL INFILE 'D:\\weibo.txt' INTO TABLE weibo;
+LOAD DATA LOCAL INFILE 'D:\\userprofile.txt' INTO TABLE userprofile;
+LOAD DATA LOCAL INFILE 'D:\\relation.txt' INTO TABLE relation;
+
+index:
+速度快
+占空间，增删改查变慢
