@@ -1,7 +1,7 @@
 选库：
 use test
 
-建表：
+建表：------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE `weibo` (
   `wid` varchar(20) DEFAULT NULL,
   `uid` varchar(20) DEFAULT NULL,
@@ -34,11 +34,242 @@ CREATE TABLE `relation` (
   `did` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-导入数据：
+导入数据：--------------------------------------------------------------------------------------------------------------------------------
 LOAD DATA LOCAL INFILE 'D:\\weibo.txt' INTO TABLE weibo;
 LOAD DATA LOCAL INFILE 'D:\\userprofile.txt' INTO TABLE userprofile;
 LOAD DATA LOCAL INFILE 'D:\\relation.txt' INTO TABLE relation;
 
-index:
+index:----------------------------------------------------------------------------------------------------------------------------------
 速度快
 占空间，增删改查变慢
+
+例1：------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE `student_info` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id，主键',
+  `student_name` varchar(50) COMMENT '学生姓名',
+  `student_age` int COMMENT '学生年龄',
+  `student_sex` varchar(10) COMMENT '学生性别',
+  PRIMARY KEY (`id`)
+);
+
+INSERT INTO `student_info`
+(`student_name`, `student_age`,`student_sex`)
+VALUES
+('葛尧', 17 , '男')
+;
+INSERT INTO `student_info`
+(`student_name`, `student_age`,`student_sex`)
+VALUES
+('XH', 23 , '男')
+;
+INSERT INTO `student_info`
+(`student_name`, `student_age`,`student_sex`)
+VALUES
+('QHR', 24 , '男')
+;
+
+INSERT INTO `student_info`
+(`student_name`, `student_age`,`student_sex`)
+VALUES
+('WR', 22 , '女')
+;
+select * from student_info;  //查询所有信息
+select * from student_info where student_sex = '男';  //查询所有男同学
+select * from student_info where student_age > 20;  //查询所有年龄大于20的
+select * from student_info where student_age > 20 and student_sex = '男';  //查询年龄大于20的男同学
+select * from student_info where student_sex = '男' order by student_age asc;  //查询所有男同学，年龄升序排列。order by
+select * from student_info where student_sex = '男' order by student_age asc limit 2;  //男同学按年龄排序，查询最年轻的两个。limit
+select student_sex, max(student_age) from student_info group by student_sex;  //把学生按性别分组，找出男女分别最大的年龄。group by
+
+例2：------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE `student_info2` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id，主键',
+  `student_name` varchar(50) COMMENT '学生姓名',
+  `student_age` int COMMENT '学生年龄',
+  `student_sex` varchar(10) COMMENT '学生性别',
+  `class_name` varchar(20) COMMENT '所在班级',
+  PRIMARY KEY (`id`)
+);
+
+INSERT INTO `student_info2`
+(`student_name`, `student_age`,`student_sex`,`class_name`)
+VALUES
+('葛尧', 8 , '男', '1班')
+;
+INSERT INTO `student_info2`
+(`student_name`, `student_age`,`student_sex`,`class_name`)
+VALUES
+('XH', 19 , '男','2班')
+;
+INSERT INTO `student_info2`
+(`student_name`, `student_age`,`student_sex`,`class_name`)
+VALUES
+('QHR', 24 , '男','3班')
+;
+
+INSERT INTO `student_info2`
+(`student_name`, `student_age`,`student_sex`,`class_name`)
+VALUES
+('GG', 22 , '女','1班')
+;
+INSERT INTO `student_info2`
+(`student_name`, `student_age`,`student_sex`,`class_name`)
+VALUES
+('GYX', 17 , '女','2班')
+;
+INSERT INTO `student_info2`
+(`student_name`, `student_age`,`student_sex`,`class_name`)
+VALUES
+('WR', 9 , '女','3班')
+;
+select * from student_info2;  
+select * from student_info2 where student_sex = '男' and student_age > 17;  //查询成年男同学
+select * from student_info2 where student_age < 17 limit 2;  //随便查询两个未成年同学。limit
+select * from student_info2 where student_age > 17 and student_sex = '女' order by student_age asc limit 1;//查询年龄最小的成年女同学。
+select sum(student_age) from student_info2 where student_sex = '女';  //求所有女学生的年龄和。sum
+select sum(student_age) as '年龄和' from student_info2 where student_sex = '女';  //求所有女学生的年龄和。sum,as
+select sum(student_age) as '年龄和' from student_info2 where student_sex = '男' and student_age > 17;  //求成年男学生的年龄和。sum
+select count(1) as '成年男生数目' from student_info2 where student_sex = '男' and student_age > 17;  //求成年男学生的数目。count()
+     //count函数是一个聚合函数，他会统计本组内的个数——因此我们可以select count(1)
+select sum(student_age)/count(1) as '复合函数求平均', avg(student_age) as 'avg函数求平均' 
+       from student_info2 where student_sex = '男' and student_age > 17;  //函数组合使用。avg
+       
+select student_sex as '性别',
+       sum(student_age)/count(1) as '使用多个函数组合求成年男学生平均年龄',
+       avg(student_age) as '使用avg函数求成年男学生平均年龄',
+       sum(student_age) as '年龄和',
+       count(1) as '学生数'
+from student_info2
+group by student_sex;  //分别查询男女同学的平均年龄，年龄总和，学生数目。group by,sum,avg,count()
+
+select student_sex as '性别',
+       class_name as '班级',
+       sum(student_age)/count(1) as '使用多个函数组合求成年男学生平均年龄',
+       avg(student_age) as '使用avg函数求成年男学生平均年龄',
+       sum(student_age) as '年龄和',
+       count(1) as '学生数'
+from student_info2
+group by student_sex,class_name;  //分别查询不同班级，男女同学的平均年龄，年龄总和，学生数目。
+
+例3：------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE `student_info` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id，主键',
+  `student_name` varchar(50) COMMENT '学生姓名',
+  `student_age` int COMMENT '学生年龄',
+  `student_sex` varchar(10) COMMENT '学生性别',
+  `student_class` varchar(10) COMMENT '门派',
+  PRIMARY KEY (`id`)
+);
+
+INSERT INTO `student_info`
+(`student_name`, `student_age`,`student_sex`, `student_class`)
+VALUES
+('葛尧', 8 , '男', '木叶')
+;
+INSERT INTO `student_info`
+(`student_name`, `student_age`,`student_sex`, `student_class`)
+VALUES
+('令狐冲', 15 , '男', '华山派')
+;
+INSERT INTO `student_info`
+(`student_name`, `student_age`,`student_sex`, `student_class`)
+VALUES
+('林平之', 19 , '男', '福威镖局')
+;
+INSERT INTO `student_info`
+(`student_name`, `student_age`,`student_sex`, `student_class`)
+VALUES
+('岳不群', 40 , '男', '华山派')
+;
+INSERT INTO `student_info`
+(`student_name`, `student_age`,`student_sex`, `student_class`)
+VALUES
+('林震南', 45 , '男', '福威镖局')
+;
+INSERT INTO `student_info`
+(`student_name`, `student_age`,`student_sex`, `student_class`)
+VALUES
+('林夫人', 43 , '女', '福威镖局')
+;
+INSERT INTO `student_info`
+(`student_name`, `student_age`,`student_sex`, `student_class`)
+VALUES
+('小师妹', 14 , '女', '华山派')
+;
+INSERT INTO `student_info`
+(`student_name`, `student_age`,`student_sex`, `student_class`)
+VALUES
+('仪琳', 18 , '女', '恒山派')
+;
+INSERT INTO `student_info`
+(`student_name`, `student_age`,`student_sex`, `student_class`)
+VALUES
+('曲菲菲', 13 , '女', '木叶')
+;
+INSERT INTO `student_info`
+(`student_name`, `student_age`,`student_sex`, `student_class`)
+VALUES
+('任盈盈', 14 , '女', '魔教')
+;
+select * from student_info;
+
+1.group:
+
+select student_class as '门派',
+       count(*) as '人数'
+from student_info
+group by student_class
+order by count(*) desc;  //统计每个分组（一个分组条件）的人数并按降序排列。group by,order by
+
+select student_class as '门派',
+       count(*) as '人数',
+       student_sex as '性别'
+from student_info
+group by student_class,
+		     student_sex
+order by count(*) desc;  //统计每个分组（二个分组条件）的人数并按降序排列。group by,order by
+
+select concat(student_class,'_',student_sex) as '门派',  //concat,将括号里面的文字拼接起来。
+	   count(1) as '人数'
+from student_info
+group by student_class,
+		 student_sex
+order by 人数 desc;  //格式化输出“华山派_男”。concat,将括号里面的文字拼接起来
+
+2.列名
+
+大家应该有注意到，我总是喜欢select 之后，给他们取一个别名，这个别名被单引号包围（'门派' '人数'），但是在order by字段的时候，
+他被反引号包围（`门派` `人数`），因为他已经是列名了。
+而在group by字段里，不能输入别名。
+这是为什么呢？
+其实这里涉及到MySQL执行顺序，当我们执行一条select语句时，会生成一张临时的结果表。这张表的列名，就是select时的名字。
+group by是在表生成之前执行的，而order by是表生成之后执行的。
+我们可以对这张结果表进行查询
+
+3.子查询
+
+列出所有的女性人数小于2的门派
+解释：首先按照门派、性别分组，统计人数；然后过滤-性别是女，人数小于2.
+
+SELECT 
+  *
+FROM
+(
+  SELECT 
+    student_class as '门派',
+    student_sex,
+    count(1) as '人数'
+  FROM
+    student_info
+  GROUP BY
+    student_class, student_sex
+  ORDER BY
+    人数 DESC, 门派
+) son_result
+WHERE
+  son_result.student_sex = '女' and son_result.人数 < 2
+;
+
