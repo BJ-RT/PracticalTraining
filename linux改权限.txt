@@ -1,0 +1,198 @@
+taodj@ubuntu:/var/lib$ root
+The program 'root' is currently not installed. You can install it by typing:
+sudo apt-get install root-system-bin
+taodj@ubuntu:/var/lib$ root su
+The program 'root' is currently not installed. You can install it by typing:
+sudo apt-get install root-system-bin
+taodj@ubuntu:/var/lib$ sudo su root
+root@ubuntu:/var/lib# cd mysql
+root@ubuntu:/var/lib/mysql# ls
+debian-5.5.flag  ib_logfile1         performance_schema  weibo
+ibdata1          mysql               test                zhihu
+ib_logfile0      mysql_upgrade_info  test1
+root@ubuntu:/var/lib/mysql# ls
+debian-5.5.flag  ib_logfile1         performance_schema  weibo
+ibdata1          mysql               test                zhihu
+ib_logfile0      mysql_upgrade_info  test1
+root@ubuntu:/var/lib/mysql# ll
+total 3067944
+drwx------  8 mysql mysql       4096 Dec 18 04:14 ./
+drwxr-xr-x 70 root  root        4096 May 30  2018 ../
+-rw-r--r--  1 root  root           0 May 30  2018 debian-5.5.flag
+-rw-rw----  1 mysql mysql 3131047936 Dec 18 05:37 ibdata1
+-rw-rw----  1 mysql mysql    5242880 Dec 18 05:37 ib_logfile0
+-rw-rw----  1 mysql mysql    5242880 Dec 17 19:34 ib_logfile1
+drwx------  2 mysql root        4096 May 30  2018 mysql/
+-rw-rw----  1 root  root           6 May 30  2018 mysql_upgrade_info
+drwx------  2 mysql mysql       4096 May 30  2018 performance_schema/
+drwx------  2 mysql mysql       4096 Sep  2 00:34 test/
+drwx------  2 mysql mysql       4096 Jun 20  2018 test1/
+drwx------  2 mysql mysql       4096 May 30  2018 weibo/
+drwx------  2 mysql mysql       4096 Dec 18 05:37 zhihu/
+root@ubuntu:/var/lib/mysql# cd mysql
+mysql/              mysql_upgrade_info  
+root@ubuntu:/var/lib/mysql# cd mysql
+mysql/              mysql_upgrade_info  
+root@ubuntu:/var/lib/mysql# cd ..
+root@ubuntu:/var/lib# cd mysql-files/
+root@ubuntu:/var/lib/mysql-files# ls
+answer_without_topic1.sql  relation.txt  userprofile.txt
+root@ubuntu:/var/lib/mysql-files# ll
+total 252372
+drwx------  2 mysql mysql      4096 Dec 17 23:12 ./
+drwxr-xr-x 70 root  root       4096 May 30  2018 ../
+-rw-rw-rw-  1 mysql mysql  61899815 Dec 17 23:12 answer_without_topic1.sql
+-rwxrwxrwx  1 taodj taodj  47654847 Nov  9  2015 relation.txt*
+-rwxrwxrwx  1 taodj taodj 148853609 Nov  9  2015 userprofile.txt*
+root@ubuntu:/var/lib/mysql-files# chmod 
+answer_without_topic1.sql  userprofile.txt
+relation.txt               
+root@ubuntu:/var/lib/mysql-files# cd ..
+root@ubuntu:/var/lib# ch
+chacl                       chgpasswd
+chage                       chgrp
+chardet                     chinese-calendar
+charmap                     chinese-calendar-autostart
+chat                        chkdupexe
+chattr                      chmod
+chcon                       chown
+checkbox                    chpasswd
+checkbox-cli                chromium-browser
+checkbox-gui                chroot
+check-language-support      chrt
+cheese                      chsh
+chfn                        chvt
+root@ubuntu:/var/lib# chmod 
+AccountsService/         libreoffice/             sgml-base/
+acpi-support/            libuuid/                 snmp/
+alien/                   lightdm/                 sudo/
+alsa/                    lightdm-data/            systemd/
+apparmor/                locales/                 ubiquity/
+apt/                     logrotate/               ubuntu-drivers-common/
+apt-xapian-index/        man-db/                  ubuntu-release-upgrader/
+aspell/                  misc/                    ucf/
+avahi-autoipd/           mlocate/                 udisks2/
+belocs/                  mysql/                   update-manager/
+bluetooth/               mysql-files/             update-notifier/
+colord/                  NetworkManager/          update-rc.d/
+dbus/                    nssdb/                   upower/
+dhcp/                    ntpdate/                 urandom/
+dictionaries-common/     os-prober/               ureadahead/
+doc-base/                pam/                     usb_modeswitch/
+dpkg/                    plymouth/                usbutils/
+gconf/                   polkit-1/                vim/
+ghostscript/             pulseaudio/              xfonts/
+hp/                      python/                  xkb/
+initramfs-tools/         rfkill/                  xml-core/
+initscripts/             rpm/                     youker-assistant-daemon/
+insserv/                 samba/                   
+root@ubuntu:/var/lib# chmod mysql-files/ 777
+chmod: invalid mode: ‘mysql-files/’
+Try 'chmod --help' for more information.
+root@ubuntu:/var/lib# chmod mysql-files/ 7777
+chmod: invalid mode: ‘mysql-files/’
+Try 'chmod --help' for more information.
+root@ubuntu:/var/lib# chmod -help
+chmod: invalid option -- 'h'
+Try 'chmod --help' for more information.
+root@ubuntu:/var/lib# chmod --help
+Usage: chmod [OPTION]... MODE[,MODE]... FILE...
+  or:  chmod [OPTION]... OCTAL-MODE FILE...
+  or:  chmod [OPTION]... --reference=RFILE FILE...
+Change the mode of each FILE to MODE.
+With --reference, change the mode of each FILE to that of RFILE.
+
+  -c, --changes          like verbose but report only when a change is made
+  -f, --silent, --quiet  suppress most error messages
+  -v, --verbose          output a diagnostic for every file processed
+      --no-preserve-root  do not treat '/' specially (the default)
+      --preserve-root    fail to operate recursively on '/'
+      --reference=RFILE  use RFILE's mode instead of MODE values
+  -R, --recursive        change files and directories recursively
+      --help     display this help and exit
+      --version  output version information and exit
+
+Each MODE is of the form '[ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+'.
+
+Report chmod bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'chmod invocation'
+root@ubuntu:/var/lib# chmod 777 mysql
+mysql/       mysql-files/ 
+root@ubuntu:/var/lib# chmod 777 mysql
+mysql/       mysql-files/ 
+root@ubuntu:/var/lib# chmod 777 mysql-files/
+root@ubuntu:/var/lib# ll
+total 280
+drwxr-xr-x 70 root          root          4096 May 30  2018 ./
+drwxr-xr-x 13 root          root          4096 Feb 18  2015 ../
+drwxr-xr-x  4 root          root          4096 Feb 18  2015 AccountsService/
+drwxr-xr-x  2 root          root          4096 Apr 30  2013 acpi-support/
+drwxr-xr-x  2 root          root          4096 Feb 28  2014 alien/
+drwxr-xr-x  2 root          root          4096 Dec 18 04:12 alsa/
+drwxr-xr-x  3 root          root          4096 Feb 18  2015 apparmor/
+drwxr-xr-x  6 root          root          4096 Dec 18 05:33 apt/
+drwxr-xr-x  2 root          root          4096 Dec 18 00:37 apt-xapian-index/
+drwxr-xr-x  2 root          root          4096 Feb 18  2015 aspell/
+drwxr-xr-x  2 avahi-autoipd avahi-autoipd 4096 Nov 28 01:42 avahi-autoipd/
+drwxr-xr-x  2 root          root          4096 Oct 23  2015 belocs/
+drwxr-xr-x  5 root          root          4096 Dec 15 04:06 bluetooth/
+drwxr-xr-x  3 colord        colord        4096 Oct 23  2015 colord/
+drwxr-xr-x  2 root          root          4096 Oct 23  2015 dbus/
+drwxr-xr-x  2 root          root          4096 Oct 22  2017 dhcp/
+drwxr-xr-x  5 root          root          4096 Oct 23  2015 dictionaries-common/
+drwxr-xr-x  5 root          root          4096 Feb 18  2015 doc-base/
+drwxr-xr-x  7 root          root          4096 Dec 18 05:33 dpkg/
+drwxr-xr-x  5 root          root          4096 Feb 18  2015 gconf/
+drwxr-xr-x  4 root          root          4096 Feb 18  2015 ghostscript/
+drwxr-xr-x  2 root          root          4096 May 13  2014 hp/
+drwxr-xr-x  2 root          root          4096 Feb 18  2015 initramfs-tools/
+drwxr-xr-x  2 root          root          4096 Mar 12  2014 initscripts/
+drwxr-xr-x  2 root          root          4096 Mar 12  2014 insserv/
+drwxr-xr-x  3 root          root          4096 Feb 18  2015 libreoffice/
+drwxrwsr-x  2 libuuid       libuuid       4096 Feb 18  2015 libuuid/
+drwxr-x---  7 lightdm       lightdm       4096 Oct 23  2015 lightdm/
+drwxr-xr-x  4 root          root          4096 Dec 18 04:14 lightdm-data/
+drwxr-xr-x  3 root          root          4096 Feb 18  2015 locales/
+drwxr-xr-x  2 root          root          4096 Dec 18 00:37 logrotate/
+drwxr-xr-x  2 root          root          4096 Feb 18  2015 man-db/
+drwxr-xr-x  2 root          root          4096 Apr 10  2014 misc/
+drwxr-xr-x  2 root          root          4096 Dec 18 00:37 mlocate/
+drwx------  8 mysql         mysql         4096 Dec 18 04:14 mysql/
+drwxrwxrwx  2 mysql         mysql         4096 Dec 17 23:12 mysql-files/
+drwxr-xr-x  2 root          root          4096 Dec 17 17:08 NetworkManager/
+drwxr-xr-x  2 root          root          4096 Feb 18  2015 nssdb/
+drwxr-xr-x  2 root          root          4096 Oct  9  2013 ntpdate/
+drwxr-xr-x  2 root          root          4096 Feb 13  2014 os-prober/
+drwxr-xr-x  2 root          root          4096 Oct 23  2015 pam/
+drwxr-xr-x  2 root          root          4096 Oct 23  2015 plymouth/
+drwx------  3 root          root          4096 Feb 18  2015 polkit-1/
+drwxr-xr-x  2 root          root          4096 Jan 28  2015 pulseaudio/
+drwxr-xr-x  2 root          root          4096 Feb 18  2015 python/
+drwxr-xr-x  2 root          root          4096 Oct 24  2015 rfkill/
+drwxr-xr-x  2 root          root          4096 Jan 16  2015 rpm/
+drwxr-xr-x  3 root          root          4096 Feb 18  2015 samba/
+drwxr-xr-x  2 root          root          4096 Feb 18  2015 sgml-base/
+drwxr-xr-x  2 root          root          4096 Apr  8  2014 snmp/
+drwx------  3 root          root          4096 Oct 24  2015 sudo/
+drwxr-xr-x  3 root          root          4096 Feb 18  2015 systemd/
+drwxrwxr-x  2 root          root          4096 Oct 23  2015 ubiquity/
+drwxr-xr-x  2 root          root          4096 Oct 23  2015 ubuntu-drivers-common/
+drwxr-xr-x  2 root          root          4096 Oct 23  2015 ubuntu-release-upgrader/
+drwxr-xr-x  3 root          root          4096 Oct 23  2015 ucf/
+drwx------  2 root          root          4096 Oct 24  2015 udisks2/
+drwxr-xr-x  2 root          root          4096 Oct 23  2015 update-manager/
+drwxr-xr-x  4 root          root          4096 Oct 23  2015 update-notifier/
+drwxr-xr-x  2 root          root          4096 May 18  2013 update-rc.d/
+drwxr-xr-x  2 root          root          4096 Dec 21  2013 upower/
+drwxr-xr-x  2 root          root          4096 Oct 23  2015 urandom/
+drwxr-xr-x  3 root          root          4096 May 30  2018 ureadahead/
+drwxr-xr-x  2 root          root          4096 Apr  8  2014 usb_modeswitch/
+drwxr-xr-x  2 root          root          4096 Feb 18  2015 usbutils/
+drwxr-xr-x  3 root          root          4096 Feb 18  2015 vim/
+drwxr-xr-x  2 root          root          4096 Feb 18  2015 xfonts/
+drwxr-xr-x  2 root          root          4096 Oct 24  2015 xkb/
+drwxr-xr-x  2 root          root          4096 Feb 18  2015 xml-core/
+drwxr-xr-x  6 root          root          4096 Feb 18  2015 youker-assistant-daemon/
+root@ubuntu:/var/lib# 
